@@ -42,7 +42,7 @@ public class NoticiaServicio {
     }
     
     @Transactional
-    public void modificarNoticia(String titulo, String cuerpo, String id) throws MiException {
+    public void modificarNoticia(String id, String titulo, String cuerpo) throws MiException {
         
         if (id.isEmpty() || id == null) {
             throw new MiException("El Id de la Noticia no puede ser nulo o estar vacio");
