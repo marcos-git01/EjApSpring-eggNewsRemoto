@@ -4,6 +4,9 @@ package com.egg.News.entidades;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.util.Date;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -15,6 +18,9 @@ public class Noticia {
     private String id;
     private String titulo;
     private String cuerpo;
+    
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
 
     public Noticia() {
     }
@@ -42,7 +48,15 @@ public class Noticia {
     public void setCuerpo(String cuerpo) {
         this.cuerpo = cuerpo;
     }
-    
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
     
     
 }

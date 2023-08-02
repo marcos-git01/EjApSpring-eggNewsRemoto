@@ -82,5 +82,25 @@ public class NoticiaControlador {
                        
     }
     
-    
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable String id, ModelMap modelo) throws MiException {
+
+        modelo.put("noticia", noticiaServicio.getOne(id));
+        try {
+
+            noticiaServicio.eliminarNoticia(id);
+
+            return "redirect:../lista";
+
+        } catch (MiException ex) {
+
+            modelo.put("error", ex.getMessage());
+
+            //return "noticia_eliminar.html";
+            return "redirect:../lista";
+        }
+
+    }
+
+
 }

@@ -6,6 +6,7 @@ import com.egg.News.excepciones.MiException;
 import com.egg.News.repositorios.NoticiaRepositorio;
 import jakarta.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class NoticiaServicio {
         
         noticia.setTitulo(titulo);
         noticia.setCuerpo(cuerpo);
+        noticia.setFecha(new Date());
         
         noticiaRepositorio.save(noticia);
         
@@ -61,6 +63,19 @@ public class NoticiaServicio {
             
             noticiaRepositorio.save(noticia);
 
+        }
+    }
+    
+    @Transactional
+    public void eliminarNoticia(String id) throws MiException {
+        
+        if (id.isEmpty() || id == null) {
+            throw new MiException("El ID de la noticia no puede ser nulo o estar vacio");
+        }
+        Optional<Noticia> respuesta = noticiaRepositorio.findById(id);
+
+        if (respuesta.isPresent()) {
+            noticiaRepositorio.delete(respuesta.get());
         }
     }
     
