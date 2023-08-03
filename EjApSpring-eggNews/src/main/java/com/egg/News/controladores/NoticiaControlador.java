@@ -101,6 +101,14 @@ public class NoticiaControlador {
         }
 
     }
+    
+    @GetMapping("/mostrar/{id}") //localhost:8080/noticia/mostrar
+    public String mostrar(@PathVariable String id, ModelMap modelo){
+        
+        modelo.put("noticia", noticiaServicio.getOne(id));
+      
+        return "noticia_mostrar.html";
+    }
 
 
 }
